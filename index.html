@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>你在历史中的名字 · 历史人物性格匹配测试</title>
+  <meta name="description" content="24 道跨越时空的抉择，测出你最接近的历史人格。基于六维性格坐标与史料标定，看看你会成为谁。">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="home">
+
+<header class="site-header">
+  <div class="wrap" data-shell="header"></div>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <div>
+      <span class="eyebrow">历 史 人 格 测 试</span>
+      <h1>如果把你放进历史，<br><em>你会成为谁？</em></h1>
+      <p class="hero-lead">
+        24 个没有标准答案的抉择，从驿站的亏空、被围的孤城，到功成之后的那一次回望。
+        我们会把你的选择折算成一组六维坐标，再从 36 位历史人物里，找出与你距离最近的那一个。
+      </p>
+      <div class="hero-meta" id="homeStats"></div>
+      <div class="hero-actions">
+        <a class="btn" href="quiz.html">开始测试 · 约 5 分钟</a>
+        <a class="btn btn-ghost" href="about.html">先看方法</a>
+      </div>
+    </div>
+    <div>
+      <div class="sample-frame">
+        <div id="sampleCard"></div>
+        <div class="sample-dots" id="sampleDots"></div>
+      </div>
+      <p class="muted" style="margin-top:14px">示例结果 · 每次答题你都会得到一张这样的卡片</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="resumeBox" hidden></section>
+
+  <hr class="rule">
+
+  <section class="section wrap">
+    <div class="section-head">
+      <span class="eyebrow">模 型</span>
+      <h2>六条轴线，而不是十六个格子</h2>
+      <p>
+        我们没有沿用 MBTI 式的分类：那种方法粒度太粗，一题之差就可能换一个人，边界也过于生硬。
+        这里用的是六条连续谱——每一位历史人物都是空间中的一个点，你也是。
+      </p>
+    </div>
+    <div class="grid grid-3" id="homeDims"></div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="section wrap">
+    <div class="section-head">
+      <span class="eyebrow">流 程</span>
+      <h2>三步，然后你就有了一个名字</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3 style="font-size:19px">一 · 作答</h3>
+        <p class="muted" style="margin-top:10px;line-height:1.8">
+          全部是情境化的日常两难，不需要任何历史知识。中途退出会自动存草稿，7 天内回来可以继续。
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:19px">二 · 生成坐标</h3>
+        <p class="muted" style="margin-top:10px;line-height:1.8">
+          选项背后是对若干维度的加权增量。累加、标准化之后，你会得到一组 0–100 的六维坐标，
+          以及一张叠加了人物轮廓的雷达图。
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:19px">三 · 遇见 TA</h3>
+        <p class="muted" style="margin-top:10px;line-height:1.8">
+          除了最匹配的那一位，你还会看到另两种可能，以及一个与你相距最远的「历史对立面」。
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap" data-shell="footer"></div>
+</footer>
+
+<script src="assets/js/data/figures-cn.js"></script>
+<script src="assets/js/data/figures-world.js"></script>
+<script src="assets/js/data/questions.js"></script>
+<script src="assets/js/core/matching.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/bootstrap.js"></script>
+<script src="assets/js/pages/home.js"></script>
+</body>
+</html>

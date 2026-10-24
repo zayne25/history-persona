@@ -1,0 +1,11 @@
+# IDE / 编辑器数据
+.codebuddy/
+.vscode/
+.idea/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 依赖（本项目零依赖，仅作扩展时预留）
+node_modules/

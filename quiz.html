@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>正在作答 · 你在历史中的名字</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="quiz">
+
+<header class="site-header">
+  <div class="wrap" data-shell="header"></div>
+</header>
+
+<main class="quiz-shell">
+  <div class="act-bar">
+    <div class="act-name" id="actName">第一幕 · 破冰</div>
+    <div class="act-note" id="actNote"></div>
+    <div class="progress"><i id="progressBar" style="width:0%"></i></div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-count" id="qCount">第 1 题</div>
+    <div class="q-stem" id="qStem"></div>
+    <div id="qBody"></div>
+    <div class="quiz-foot">
+      <button class="btn btn-ghost btn-sm" id="btnPrev">上一题</button>
+      <button class="btn btn-sm" id="btnNext">下一题</button>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap" data-shell="footer"></div>
+</footer>
+
+<script src="assets/js/data/figures-cn.js"></script>
+<script src="assets/js/data/figures-world.js"></script>
+<script src="assets/js/data/questions.js"></script>
+<script src="assets/js/core/matching.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/bootstrap.js"></script>
+<script src="assets/js/pages/quiz.js"></script>
+</body>
+</html>

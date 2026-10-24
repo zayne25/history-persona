@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>人物长廊 · 你在历史中的名字</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="gallery">
+
+<header class="site-header">
+  <div class="wrap" data-shell="header"></div>
+</header>
+
+<main class="wrap section">
+  <div class="section-head">
+    <span class="eyebrow">长 廊</span>
+    <h2>三十六种活法</h2>
+    <p>点开任意一位，可以看到他的行事年表、性格关键词与推荐阅读。也可以按领域筛选，看看某一类人长什么样。</p>
+  </div>
+
+  <div>
+    <input id="gallerySearch" type="search" placeholder="搜索人物、朝代或关键词，如：宋 / 科学 / 旷"
+           style="width:100%;max-width:420px;padding:11px 14px;border:1px solid var(--line);background:transparent;font-family:inherit;font-size:14px;color:var(--ink)">
+  </div>
+
+  <div class="filter-row" id="packFilter" style="margin-top:18px"></div>
+  <div class="filter-row" id="fieldFilter"></div>
+
+  <p class="muted" id="galleryCount" style="margin:16px 0"></p>
+
+  <div class="grid grid-4" id="galleryGrid"></div>
+</main>
+
+<div id="detailModal" hidden></div>
+
+<footer class="site-footer">
+  <div class="wrap" data-shell="footer"></div>
+</footer>
+
+<script src="assets/js/data/figures-cn.js"></script>
+<script src="assets/js/data/figures-world.js"></script>
+<script src="assets/js/data/questions.js"></script>
+<script src="assets/js/core/matching.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/bootstrap.js"></script>
+<script src="assets/js/pages/gallery.js"></script>
+</body>
+</html>

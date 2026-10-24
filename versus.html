@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>好友对决 · 你在历史中的名字</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="versus">
+
+<header class="site-header">
+  <div class="wrap" data-shell="header"></div>
+</header>
+
+<main class="wrap section">
+  <div class="section-head">
+    <span class="eyebrow">对 决</span>
+    <h2>你们是同盟，还是宿敌？</h2>
+    <p>把朋友的结果链接粘进来，我们会把两人的坐标放在一起：距离近是同盟，距离远是宿敌，形状相似而强弱相反则是互补。</p>
+  </div>
+
+  <div class="panel">
+    <p class="muted" id="meHint"></p>
+    <input id="tokenInput" type="text" placeholder="粘贴朋友的结果链接，或链接中 #r= 后面的那串字符"
+           style="width:100%;margin-top:12px;padding:11px 14px;border:1px solid var(--line);background:transparent;font-family:inherit;font-size:14px;color:var(--ink)">
+    <div class="hero-actions" style="margin-top:18px">
+      <button class="btn btn-sm" id="btnCompare">开始比对</button>
+      <a class="btn btn-ghost btn-sm" href="quiz.html" id="btnGoQuiz">我还没测过</a>
+    </div>
+    <p class="muted" id="versusHint" style="margin-top:12px"></p>
+  </div>
+
+  <div id="versusResult" style="margin-top:28px"></div>
+
+  <div class="grid" style="grid-template-columns:340px 1fr;gap:32px;align-items:center;margin-top:28px">
+    <div><canvas id="versusRadar"></canvas></div>
+    <div id="versusTable"></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap" data-shell="footer"></div>
+</footer>
+
+<script src="assets/js/data/figures-cn.js"></script>
+<script src="assets/js/data/figures-world.js"></script>
+<script src="assets/js/data/questions.js"></script>
+<script src="assets/js/core/matching.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/bootstrap.js"></script>
+<script src="assets/js/pages/versus.js"></script>
+</body>
+</html>

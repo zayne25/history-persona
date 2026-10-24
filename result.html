@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>你的历史人格 · 你在历史中的名字</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="result">
+
+<header class="site-header">
+  <div class="wrap" data-shell="header"></div>
+</header>
+
+<main class="wrap" id="resultRoot"></main>
+
+<section class="wrap section" id="resultDetail">
+  <div class="grid" style="grid-template-columns:340px 1fr;gap:32px;align-items:center">
+    <div><canvas id="radarCanvas"></canvas></div>
+    <div>
+      <span class="eyebrow">你 的 坐 标</span>
+      <h2 style="font-size:26px">六条轴线，两组轮廓</h2>
+      <p style="margin-top:12px;color:var(--ink-soft);line-height:1.85;font-size:15px">
+        实线是你，虚线是 TA。重合得越多的地方，说明你们处理事情的方式越像；
+        岔开的地方，往往正是你最不像 TA 的那一点——结果页下方的推演，就是从这些岔口出发的。
+      </p>
+    </div>
+  </div>
+  <div class="grid grid-3" id="radarLabels" style="margin-top:32px"></div>
+</section>
+
+<hr class="rule">
+
+<section class="section wrap">
+  <div class="section-head">
+    <span class="eyebrow">推 演</span>
+    <h2>如果你是 TA</h2>
+    <p>三张卡片，点开看看在这个位置上，你会做出怎样的选择。</p>
+  </div>
+  <div class="flip-grid" id="whatIfGrid"></div>
+</section>
+
+<hr class="rule">
+
+<section class="section wrap">
+  <div class="grid" style="grid-template-columns:1.2fr 0.8fr;gap:32px">
+    <div class="panel">
+      <h3>解读</h3>
+      <p id="figureSummary"></p>
+      <p id="deepRead"></p>
+    </div>
+    <div class="panel">
+      <h3>行事年表</h3>
+      <ul id="milestoneList"></ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-bottom:24px">
+  <div class="panel">
+    <h3>标定依据</h3>
+    <p class="muted">每个维度的坐标都不是拍脑袋定的，下面列出了对应的史料依据条目。</p>
+    <ul id="evidenceList"></ul>
+  </div>
+</section>
+
+<section class="wrap" style="padding-bottom:24px">
+  <div class="section-head">
+    <span class="eyebrow">其 他 可 能</span>
+    <h2>你也可以是这样的人</h2>
+  </div>
+  <div class="grid grid-3" id="runnerUpList"></div>
+</section>
+
+<section class="wrap" style="padding-bottom:56px">
+  <div class="section-head">
+    <span class="eyebrow">反 面</span>
+    <h2>你的历史对立面</h2>
+  </div>
+  <div id="oppositeBox"></div>
+  <p class="panel" id="specialBanner" hidden style="margin-top:16px"></p>
+</section>
+
+<section class="wrap" style="padding-bottom:64px">
+  <div class="panel">
+    <h3>分享与再玩</h3>
+    <p class="muted">保存一张卡，或者把链接发出去；也可以拉上朋友一起测，看看你们是同盟还是宿敌。</p>
+    <div class="hero-actions">
+      <button class="btn btn-sm" id="btnSaveCard">生成分享卡</button>
+      <button class="btn btn-ghost btn-sm" id="btnCopyLink">复制结果链接</button>
+      <button class="btn btn-ghost btn-sm" id="btnVersus">和朋友对决</button>
+      <a class="btn btn-ghost btn-sm" id="linkFigure" href="gallery.html">看看其他人</a>
+      <button class="btn btn-ghost btn-sm" id="btnRetry">重新测一次</button>
+    </div>
+    <p class="muted" id="shareHint" style="margin-top:12px"></p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap" data-shell="footer"></div>
+</footer>
+
+<script src="assets/js/data/figures-cn.js"></script>
+<script src="assets/js/data/figures-world.js"></script>
+<script src="assets/js/data/questions.js"></script>
+<script src="assets/js/core/matching.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/bootstrap.js"></script>
+<script src="assets/js/pages/result.js"></script>
+</body>
+</html>

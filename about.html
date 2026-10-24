@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>方法与说明 · 你在历史中的名字</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="about">
+
+<header class="site-header">
+  <div class="wrap" data-shell="header"></div>
+</header>
+
+<main class="wrap section">
+  <div class="section-head">
+    <span class="eyebrow">透 明</span>
+    <h2>我们是怎么算出这个人的</h2>
+    <p>
+      一个匹配测试值不值得信，取决于它敢不敢把方法写出来。这一页会完整说明：你被放在哪六条轴线上、
+      每一题如何计分、人物坐标从哪来、以及你的数据去了哪里。
+    </p>
+  </div>
+
+  <div class="panel">
+    <h3>一 · 计分</h3>
+    <p>每一道题的选项背后，都是对若干维度的一次加权增量。累加后得到原始分：</p>
+    <div class="formula">raw<sub>d</sub> = Σ w<sub>q</sub> · Δ(q, d)</div>
+    <p>其中 w<sub>q</sub> 是题目权重（核心幕次的题更重），Δ 是该选项在这一维度上的增量。排序题按位次加权，滑杆题直接给出 ±10 的增量。</p>
+    <h4 style="margin-top:20px;font-family:var(--serif)">六条轴线的定义与权重</h4>
+    <div id="aboutDims"></div>
+  </div>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>二 · 标准化</h3>
+    <p>
+      原始分没有直观意义，需要折算到 0–100。这里用的是「题库理论极值」——遍历每道题的所有可能作答，
+      算出该维度能达到的最小与最大值，然后做 min-max 归一。好处是：不同时间、不同设备测出的坐标可以直接比较，
+      结果链接永远有效。
+    </p>
+    <div class="formula">T<sub>d</sub> = clamp( (raw<sub>d</sub> − min<sub>d</sub>) / (max<sub>d</sub> − min<sub>d</sub>) × 100, 0, 100 )</div>
+  </div>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>三 · 相似度：两个都要</h3>
+    <p>
+      只用距离会有个毛病：性格「味道」很像、只是程度更极端的人，会被误判成不像。
+      所以这里同时算两种相似度——余弦看轮廓形状，距离看强度接近程度——再加权融合。
+    </p>
+    <div class="formula">
+      S<sub>cos</sub> = Σ w<sub>d</sub>·T<sup>u</sup><sub>d</sub>·T<sup>p</sup><sub>d</sub> / √( Σ w<sub>d</sub>(T<sup>u</sup><sub>d</sub>)² · Σ w<sub>d</sub>(T<sup>p</sup><sub>d</sub>)² )<br>
+      S<sub>dist</sub> = 1 − √( Σ w<sub>d</sub>(T<sup>u</sup><sub>d</sub> − T<sup>p</sup><sub>d</sub>)² / Σ w<sub>d</sub> ) / 100<br>
+      S = 100 · ( α·S<sub>cos</sub> + (1−α)·S<sub>dist</sub> )，α = 0.35
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>四 · 平衡与兜底</h3>
+    <ul>
+      <li>稀有度微调：对高知名度人物做轻度惩罚，避免所有人总被匹配到同几位。</li>
+      <li>平局判定：前两名分差小于 2 分时，追加决胜题；仍无法拉开则并列展示。</li>
+      <li>特殊结局：若最高分仍低于阈值，给出「未被记载的人」——史书漏掉的那一个，也是一种结果。</li>
+      <li>可信度标签：通过反向题检测前后矛盾，并据此调整结果文案的语气。</li>
+    </ul>
+  </div>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>五 · 当前参数</h3>
+    <div id="aboutConfig"></div>
+  </div>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>六 · 题库配比</h3>
+    <div id="aboutBank"></div>
+  </div>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>七 · 人物选取规则</h3>
+    <p>准入：时间止于近代以前（排除在世者及逝世不足七十年者）；史料充足且学界对其主要特质有较高共识；在某领域有明确、可讲述的代表性成就。</p>
+    <p>排除：主要历史评价围绕大规模屠杀、殖民掠夺或极端暴政者；宗教先知与在世宗教领袖；当代与近现代政治争议人物。</p>
+    <p>均衡：每批新增人物需满足女性占比不低于四分之一、单一领域不过度集中、时代分布跨越多个时期。每位人物均附敏感等级与人工复核记录。</p>
+  </div>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>八 · 数据与隐私</h3>
+    <ul>
+      <li>全部计算在你的浏览器里完成，<strong>断网也能测</strong>。</li>
+      <li>默认<strong>不上传</strong>任何作答数据；草稿仅存于本机，7 天后自动失效。</li>
+      <li>结果被编码进链接，任何人在任何设备打开同一链接都得到同一结果。</li>
+      <li>不接入广告类第三方追踪。</li>
+    </ul>
+  </div>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>九 · 免责声明</h3>
+    <p>
+      本产品为<strong>文化娱乐向内容</strong>，不是心理诊断工具，也不构成对任何人格的科学测量。
+      人物的六维坐标是基于史料记载的<strong>倾向性概括</strong>，不等于历史结论；为便于阅读，
+      部分细节做了通俗化处理。请勿将测试结果用于任何人事、教育或临床决策。
+    </p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap" data-shell="footer"></div>
+</footer>
+
+<script src="assets/js/data/figures-cn.js"></script>
+<script src="assets/js/data/figures-world.js"></script>
+<script src="assets/js/data/questions.js"></script>
+<script src="assets/js/core/matching.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/bootstrap.js"></script>
+<script src="assets/js/pages/about.js"></script>
+</body>
+</html>

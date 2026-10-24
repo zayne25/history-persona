@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>数据分析 · 你在历史中的名字</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="analysis">
+
+<header class="site-header">
+  <div class="wrap" data-shell="header"></div>
+</header>
+
+<main class="wrap section">
+  <div class="section-head">
+    <span class="eyebrow">体 检</span>
+    <h2>这份测试到底准不准，用数据说话</h2>
+    <p>
+      下面的每一个数字都来自一次可复现的模拟体检：固定随机种子、固定样本量，
+      任何人跑 <code>node tools/analyze.js</code> 都会得到完全相同的结果。
+      每一项指标都写明了阈值和为什么是这个阈值——结论要么通过，要么不通过，不含糊。
+    </p>
+  </div>
+
+  <div id="verdictBanner"></div>
+
+  <div class="grid grid-2" id="verdictGrid"></div>
+
+  <hr class="rule">
+
+  <section class="chart-block">
+    <h3>Top1 命中分布</h3>
+    <p class="muted">每位人物被匹配为「最像的那个人」的比例。虚线是均匀分布基准（每位约 2.8%），红线是集中度上限。</p>
+    <div id="chartDist"></div>
+  </section>
+
+  <section class="chart-block">
+    <h3>认真作答者的结果分布</h3>
+    <p class="muted">只看认真作答的那一组人。如果连他们都过度集中在某几个人物身上，说明是模型的问题，而不是用户乱点。</p>
+    <div id="chartCareful"></div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="chart-block">
+    <h3>六维坐标分布</h3>
+    <p class="muted">模拟用户落到每一条轴线上的位置。分布越宽，说明这条轴越能把人区分开；如果挤在中间的一条竖线里，这条轴就白设了。</p>
+    <div class="grid grid-2" id="dimCharts"></div>
+  </section>
+
+  <section class="chart-block">
+    <h3>各维度区分度</h3>
+    <p class="muted">上图的量化版本：标准差越大，区分能力越强。</p>
+    <div id="chartDimSd"></div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="chart-block">
+    <h3>对外展示的匹配度分布</h3>
+    <p class="muted">绿色区间是设计目标：不让用户看到「37% 匹配」这种挫败数字，也不让所有人都显示 99%。</p>
+    <div id="chartDisplay"></div>
+  </section>
+
+  <section class="chart-block">
+    <h3>一致性检测是否有效</h3>
+    <p class="muted">反向题的意义在于识别乱点。理想状态：乱点组大量被标为「摇摆/随性」，认真组几乎不被误伤。</p>
+    <div id="chartCredibility"></div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="chart-block">
+    <h3>本轮修复了什么</h3>
+    <p class="muted">这份报告的价值不在于全绿，而在于它逼出了下面这些真实缺陷。全部为实测前后对比。</p>
+    <div id="fixList"></div>
+  </section>
+
+  <section class="chart-block">
+    <h3>方法说明</h3>
+    <div id="methodBox"></div>
+  </section>
+
+  <section class="chart-block">
+    <h3>局限与已知不足</h3>
+    <div id="limitsBox"></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap" data-shell="footer"></div>
+</footer>
+
+<script src="assets/js/data/figures-cn.js"></script>
+<script src="assets/js/data/figures-world.js"></script>
+<script src="assets/js/data/questions.js"></script>
+<script src="assets/js/data/analysis.js"></script>
+<script src="assets/js/core/matching.js"></script>
+<script src="assets/js/core/store.js"></script>
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/core/charts.js"></script>
+<script src="assets/js/core/bootstrap.js"></script>
+<script src="assets/js/pages/analysis.js"></script>
+</body>
+</html>
