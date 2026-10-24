@@ -354,8 +354,10 @@
     ctx.font = '500 26px "Noto Serif SC",serif';
     ctx.fillText('你在历史中的名字', 70, 100);
 
+    // 分享卡用画像而非印章：分享出去的图要让人一眼认出是哪位人物
     var pcanvas = document.createElement('canvas');
-    drawPortrait(pcanvas, figure, { size: 320 });
+    if (global.Portrait) global.Portrait.draw(pcanvas, figure, { size: 320 });
+    else drawPortrait(pcanvas, figure, { size: 320 });
     ctx.drawImage(pcanvas, W / 2 - 160, 140, 320, 320);
 
     // 中部：姓名与判词

@@ -65,7 +65,8 @@
       '<div class="tags" id="resultTags"></div>' +
       '</div></section>';
 
-    global.UI.drawPortrait(el('resultPortrait'), f, { size: 260 });
+    global.Portrait.draw(el('resultPortrait'), f, { size: 260 });
+    el('resultPortrait').classList.add('seal-in');
 
     // 关键词：人物特质 + 趣味题结果
     var tags = (f.traits || []).slice(0, 3).concat(payload.g || []).slice(0, 6);
@@ -167,6 +168,29 @@
       banner.hidden = false;
       banner.textContent = '你的坐标离所有已知人物都很远——你大概是史书漏掉的那一个。';
     }
+
+    revealAll();
+  }
+
+  /** 区块进入视口时依次浮现；不支持 IntersectionObserver 时直接显示，不做隐藏 */
+  function revealAll() {
+    var nodes = document.querySelectorAll('#resultRoot > *');
+    var io = null;
+    if (global.IntersectionObserver) {
+      io = new global.IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+    }
+    Array.prototype.forEach.call(nodes, function (n, i) {
+      n.classList.add('reveal');
+      n.style.transitionDelay = Math.min(i * 60, 240) + 'ms';
+      if (io) io.observe(n); else n.classList.add('is-in');
+    });
   }
 
   global.Pages = global.Pages || {};

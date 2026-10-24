@@ -10,11 +10,21 @@
   var packs = global.FIGURE_PACKS || [];
   var bank = global.QUESTIONS;
 
+  var portraits = global.FIGURE_PORTRAITS || {};
+
   var figures = [];
   var byId = {};
   packs.forEach(function (p) {
     p.figures.forEach(function (f) {
       f._pack = p.id;
+      // 画像的视觉特征单独存放，这里合并进来；缺则用规则兜底，避免画不出来
+      f.portrait = portraits[f.id] || {
+        robe: f.region === 'china' ? 'hanfu' : 'western',
+        head: f.gender === 'female' ? 'zan' : 'jin',
+        prop: 'none',
+        beard: f.gender === 'male',
+        pose: 'stand'
+      };
       figures.push(f);
       byId[f.id] = f;
     });

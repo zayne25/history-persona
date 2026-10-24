@@ -46,12 +46,17 @@
 
     el('versusResult').innerHTML =
       '<div class="versus-box">' +
-      '<div><h3>' + esc(fa.name) + '</h3><p class="muted">' + esc(fa.tagline) + '</p></div>' +
+      '<div><canvas id="vsPortraitA"></canvas><h3>' + esc(fa.name) + '</h3>' +
+      '<p class="muted">' + esc(fa.tagline) + '</p></div>' +
       '<div class="versus-mid">' + esc(r.label) + '</div>' +
-      '<div><h3>' + esc(fb.name) + '</h3><p class="muted">' + esc(fb.tagline) + '</p></div>' +
+      '<div><canvas id="vsPortraitB"></canvas><h3>' + esc(fb.name) + '</h3>' +
+      '<p class="muted">' + esc(fb.tagline) + '</p></div>' +
       '</div>' +
       '<p style="margin-top:18px">' + esc(r.text) + '</p>' +
       '<p class="muted" style="margin-top:10px">六维距离 ' + r.distance + ' / 100（数值越小越像）</p>';
+
+    global.Portrait.draw(el('vsPortraitA'), fa, { size: 150, seal: false });
+    global.Portrait.draw(el('vsPortraitB'), fb, { size: 150, seal: false });
 
     global.UI.drawRadar(el('versusRadar'), ca, cb, { size: 340 });
 
