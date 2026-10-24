@@ -21,6 +21,26 @@ node tools/serve.js          # 零依赖，默认 4173
 
 > 不要用编辑器 webview 生成的 `vscode-resource.vscode-cdn.net` 地址在外部浏览器打开——那是 IDE 进程内部的虚拟域名，浏览器无法解析。请在外部浏览器手动输入 `http://127.0.0.1:4173/`。
 
+**部署到 GitHub Pages**
+
+本项目零依赖、零构建，Pages 可直接托管仓库根目录，无需 CI：
+
+1. GitHub 网页右上角 → **New repository**，仓库名自取（例如 `history-persona`），**不要**勾选 Add a README / .gitignore（本地已有）。
+2. 关联并推送（把地址换成你自己的）：
+
+```powershell
+git remote add origin https://github.com/<你的用户名>/<仓库名>.git
+git push -u origin main
+```
+
+3. 推送后进入仓库 **Settings → Pages**，Source 选 **Deploy from a branch**，Branch 选 **main / root**，保存。约一分钟后即可访问：
+
+```
+https://<你的用户名>.github.io/<仓库名>/
+```
+
+> 推送认证：GitHub 已不支持账号密码，HTTPS 推送需改用 **Personal Access Token**（GitHub → Settings → Developer settings → Personal access tokens → Tokens(classic)，勾选 `repo`），弹窗里用户名填 GitHub 账号、密码框粘贴 token。嫌麻烦可直接用 GitHub Desktop，图形界面登录一次即可。
+
 **自检（可选，需 Node）**
 
 ```powershell
